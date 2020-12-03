@@ -28,11 +28,11 @@ filename=corpus/103.pdf-05.png
 a=$(echo $(identify -format '%w-%h' $filename) | cut -f1 -d-)
 b=$(echo $(identify -format '%w-%h' $filename) | cut -f2 -d-)
 max=$(( a > b ? a : b ))
-python yolov5/detect.py --source $filename --weights models/last.pt --conf-thres 0.75 --img $max --project MMLI --name results --exist-ok --save-txt --save-conf
+python yolov5/detect.py --source $filename --weights models/train/weights/last.pt --conf-thres 0.5 --img $max --project MMLI --name results --exist-ok --save-txt --save-conf
 filename=corpus/103.pdf-03.png
 a=$(echo $(identify -format '%w-%h' $filename) | cut -f1 -d-)
 b=$(echo $(identify -format '%w-%h' $filename) | cut -f2 -d-)
 max=$(( a > b ? a : b ))
-python yolov5/detect.py --source $filename --weights models/last.pt --conf-thres 0.75 --img $max --project MMLI --name results --exist-ok --save-txt --save-conf
+python yolov5/detect.py --source $filename --weights models/train/weights/last.pt --conf-thres 0.5 --img $max --project MMLI --name results --exist-ok --save-txt --save-conf
 python train.py --img 640 --batch 16 --epochs 5 --data coco128.yaml --weights
 '''
